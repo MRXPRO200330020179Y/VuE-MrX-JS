@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <title>#6 - Bind</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+
+            <input type="text" placeholder="title" v-model="title">
+            <input type="text" placeholder="img" v-model="imgUrl">
+             <br>
+            <img @click="changrImg" :src="imgUrl" :alt="title">
+
+        </div>
+    </div>
+
+
+    <script>
+        const App = {
+            data(){
+               return{
+                   title:'dog',
+                   imgUrl:'1.jpg'
+               }
+            },
+
+            methods:{
+                changrImg(){
+                    const images = ['1.jpg','2.jpg'];  
+
+                    this.imgUrl = images[Math.floor(Math.random() * images.length)]
+                }
+            },
+            computed:{}
+
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

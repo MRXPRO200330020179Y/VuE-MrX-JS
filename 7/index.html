@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <title>#7 - v-for</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+        
+            <ul>
+                <li v-for="(name,index) in names" :key="index">{{name}} - {{index+1}}</li>
+            </ul>
+
+            <button @click="addNewItem">Submit</button>
+
+            <hr>
+            <hr>
+
+            <ul>
+                <li v-for="pepl in peple" :kye="pepl.id">
+                    <h2>{{pepl.id}}</h2>
+                    <h3>{{pepl.name}} - {{pepl.age}}</h3>
+                    <p>Gender: {{pepl.male ? 'male' : 'Femel'}}</p>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+
+
+    <script>
+        const App = {
+            data(){
+               return{
+                   names:['Evgenii', 'Alex', 'Daria'],
+                   peple: [
+                    {
+                        id:1,
+                        name:'Evgenii',
+                        age:24,
+                        male:true,
+                    },
+
+                    {
+                        id:2,
+                        name:'Alex',
+                        age:20,
+                        male:true,
+                    },
+
+                    {
+                        id:3,
+                        name:'Daria',
+                        age:25,
+                        male:false,
+                    },
+                   ]
+               }
+            },
+
+            methods:{
+                addNewItem(){
+                    const randomName = Math.random().toString(36).substring(7);
+                    this.names.push(randomName)
+                }
+            },
+            computed:{}
+
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

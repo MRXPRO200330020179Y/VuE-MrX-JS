@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <title>#3 - Methods</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+
+            <!-- Vue start -->
+
+            <div class="app__header">
+                {{prioity.title}} - {{prioity.value}}
+            </div>
+
+            <div class="app__body">
+                <button v-on:click="down">{{buttons.prev.title}}</button>
+                <button v-on:click="up">{{buttons.next.title}}</button>
+            </div>
+
+            <!-- Vue end -->
+
+        </div>
+    </div>
+
+
+    <script>
+        const App = {
+            data(){
+               return{
+                prioity:{
+                    title:'Prioritr',
+                    value:0,
+                },
+
+                buttons:{
+                    prev:{
+                        title: 'Down',
+                    },
+
+                    next:{
+                        title:'Up',
+                    }
+                }
+               }
+            },
+
+            methods:{
+                down(){
+                    this.prioity.value -=1;
+                },
+
+                up(){
+                    this.prioity.value +=1;
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

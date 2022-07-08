@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <title>#5 - computed</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+
+            <!-- meassage -->
+
+            {{messages}}
+
+            <!-- Vue start -->
+
+            <div class="app__header">
+                {{prioity.title}} - {{prioity.value}}
+            </div>
+
+            <div class="app__body">
+                <button v-if="prioity.value > 0" v-on:click="down">{{buttons.prev.title}}</button>
+                <br>
+                <br>
+                <button v-on:click="up">{{buttons.next.title}}</button>
+            </div>
+
+            <!-- Vue end -->
+
+        </div>
+    </div>
+
+
+    <script>
+        const App = {
+            data(){
+               return{
+                prioity:{
+                    title:'Prioritr',
+                    value:0,
+                },
+
+                buttons:{
+                    prev:{
+                        title: 'Down',
+                    },
+
+                    next:{
+                        title:'Up',
+                    }
+                }
+               }
+            },
+
+            methods:{
+                down(){
+                    if(this.prioity.value >=1){
+                        this.prioity.value -=1;
+                    }
+                },
+
+                up(){
+                    if(this.prioity.value < 3){
+                        this.prioity.value +=1;
+                    }
+                }
+            },
+
+            computed:{
+                messages(){
+                    const messages = {
+                        wlcome: 'Make some Vote',
+                        save: 'Saved',
+                    };
+                    return this.prioity.value > 0 ? messages.save : messages.wlcome
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
